@@ -1,3 +1,5 @@
-<div class="app">
-  why cant i like my bad designs
-</div>
+<svelte:head>
+  <link rel="icon" href="$lib/assets/favicon.ico">
+</svelte:head>
+
+<slot></slot>
