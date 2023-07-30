@@ -1,5 +1,5 @@
 <svelte:head>
-  <link rel="icon" href="$lib/assets/favicon.ico">
+  <link rel="icon" href="/favicon.png" />
 </svelte:head>
 
-<slot></slot>
+<slot />

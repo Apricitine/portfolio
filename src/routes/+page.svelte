@@ -1,14 +1,22 @@
 <script lang="ts">
-  import { Rive } from "@rive-app/canvas";
+  import { Layout, Rive, Fit, Alignment } from "@rive-app/canvas";
   import { onMount } from "svelte";
 
   onMount(() => {
-    let r = new Rive({
+    const introCanvas: HTMLCanvasElement = document.getElementById(
+      "introCanvas"
+    ) as HTMLCanvasElement;
+
+    let r: Rive = new Rive({
       src: "/intro.riv",
       autoplay: true,
-      artboard: "Blobs",
+      layout: new Layout({
+        fit: Fit.Cover,
+        alignment: Alignment.Center,
+      }),
+      artboard: "New Artboard",
       stateMachines: "Animation",
-      canvas: document.getElementById("introCanvas") as HTMLCanvasElement,
+      canvas: introCanvas,
       onLoad: () => {
         r.resizeDrawingSurfaceToCanvas();
       },
@@ -16,5 +24,16 @@
   });
 </script>
 
-<canvas id="introCanvas" width="300" height="300" />
-asdfdas
+<svelte:head>
+  <title>Home - Apricitine</title>
+</svelte:head>
+
+<canvas id="introCanvas" />
+
+<style lang="scss">
+  canvas#introCanvas {
+    width: 100%;
+    height: 100vh;
+    display: block;
+  }
+</style>
