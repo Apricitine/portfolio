@@ -2,7 +2,9 @@
   import { Layout, Rive, Fit, Alignment } from "@rive-app/canvas";
   import { onMount } from "svelte";
 
-  onMount(() => {
+  let readyToMountMain: boolean;
+
+  onMount(async () => {
     const introCanvas: HTMLCanvasElement = document.getElementById(
       "introCanvas"
     ) as HTMLCanvasElement;
@@ -21,7 +23,13 @@
         r.resizeDrawingSurfaceToCanvas();
       },
     });
+
+    document.addEventListener("click", () => {
+      setTimeout(() => readyToMountMain = true, 6000);
+    });
+
   });
+  setInterval(() => console.log(`outside ${readyToMountMain}`), 1000);
 </script>
 
 <svelte:head>
@@ -29,11 +37,35 @@
 </svelte:head>
 
 <canvas id="introCanvas" />
+{#if readyToMountMain}
+<main>
+  <h1>Apricitine</h1>
+</main>
+{/if}
 
 <style lang="scss">
   canvas#introCanvas {
+    position: absolute;
     width: 100%;
     height: 100vh;
     display: block;
+    z-index: -1;
+  }
+
+  main {
+    z-index: 1;
+    background: transparent;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      color: white;
+      margin: 0;
+      font-family: "DM Mono";
+      font-size: 5rem;
+    }
   }
 </style>
