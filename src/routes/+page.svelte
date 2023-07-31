@@ -1,4 +1,5 @@
 <script lang="ts">
+  import ApricitineTitle from "$lib/components/ApricitineTitle.svelte";
   import { Layout, Rive, Fit, Alignment } from "@rive-app/canvas";
   import { onMount } from "svelte";
 
@@ -25,11 +26,9 @@
     });
 
     document.addEventListener("click", () => {
-      setTimeout(() => readyToMountMain = true, 6000);
+      setTimeout(() => (readyToMountMain = true), 6000);
     });
-
   });
-  setInterval(() => console.log(`outside ${readyToMountMain}`), 1000);
 </script>
 
 <svelte:head>
@@ -38,12 +37,24 @@
 
 <canvas id="introCanvas" />
 {#if readyToMountMain}
-<main>
-  <h1>Apricitine</h1>
-</main>
+  <main>
+    <ApricitineTitle />
+  </main>
 {/if}
 
 <style lang="scss">
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translate(0, 5vh);
+    }
+    100% {
+      opacity: 1;
+      top: 0%;
+      transform: translate(0, 0);
+    }
+  }
+
   canvas#introCanvas {
     position: absolute;
     width: 100%;
@@ -60,12 +71,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    h1 {
-      color: white;
-      margin: 0;
-      font-family: "DM Mono";
-      font-size: 5rem;
-    }
   }
 </style>
