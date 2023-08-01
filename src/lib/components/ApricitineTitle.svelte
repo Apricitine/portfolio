@@ -4,7 +4,7 @@
   import glowies from "$lib/utilities/glowies";
 
   onMount(() => {
-    skibbity("span", "APRICITINE!@#$%^&*()");
+    skibbity("span#skibbity-span", "APRICITINE!@#$%^&*()");
     glowies("blob");
   });
 </script>
@@ -13,11 +13,19 @@
   <div id="blob" />
   <div id="blur" />
   <h1>
-    [&nbsp;&nbsp;<span data-value="Apricitine">Apricitine</span>&nbsp;&nbsp;]
+    [&nbsp;&nbsp;<span id="skibbity-span" data-value="Apricitine"
+      >Apricitine</span
+    >&nbsp;&nbsp;]
   </h1>
 </section>
 
 <style lang="scss">
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -29,7 +37,7 @@
       transform: translate(0, 0);
     }
   }
-  @keyframes rotate {
+  @keyframes rotateIn {
     from {
       rotate: 0deg;
     }
@@ -67,6 +75,25 @@
       animation: fadeIn ease 3s;
       text-shadow: 0px 0px 20px rgb(240, 56, 179);
       z-index: 3;
+      position: relative;
+      transition: all 750ms;
+
+      &:hover {
+        transform: scale(1.025);
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        background-color: rgba(240, 56, 179, 0.342);
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        transform: perspective(30rem) rotateX(75deg) translate(0, 190%) scale(0.5);
+        filter: blur(4rem);
+      }
     }
 
     #blob {
@@ -83,8 +110,9 @@
         rgb(238, 39, 162),
         rgb(27, 224, 238)
       );
-      animation: rotate 20s infinite;
-      animation: fade 3s ease;
+      animation-name: rotateIn, fade;
+      animation-duration: 20s, 3s;
+      animation-iteration-count: infinite, 1;
       opacity: 0.8;
     }
 
