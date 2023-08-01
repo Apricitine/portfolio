@@ -1,39 +1,21 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import skibbity from "$lib/utilities/skibbity";
+  import glowies from "$lib/utilities/glowies";
 
   onMount(() => {
-    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-    let interval = null;
-
-    document.querySelector("h1").onmouseover = (event) => {
-      let iteration = 0;
-
-      clearInterval(interval);
-
-      interval = setInterval(() => {
-        event.target.innerText = event.target.innerText
-          .split("")
-          .map((letter, index) => {
-            if (index < iteration) {
-              return event.target.dataset.value[index];
-            }
-
-            return letters[Math.floor(Math.random() * 26)];
-          })
-          .join("");
-
-        if (iteration >= event.target.dataset.value.length) {
-          clearInterval(interval);
-        }
-
-        iteration += 1 / 3;
-      }, 30);
-    };
+    skibbity("span", "APRICITINE!@#$%^&*()");
+    glowies("blob");
   });
 </script>
 
-<h1 data-value="Apricitine">Apricitine</h1>
+<section>
+  <div id="blob" />
+  <div id="blur" />
+  <h1>
+    [&nbsp;&nbsp;<span data-value="Apricitine">Apricitine</span>&nbsp;&nbsp;]
+  </h1>
+</section>
 
 <style lang="scss">
   @keyframes fadeIn {
@@ -47,13 +29,63 @@
       transform: translate(0, 0);
     }
   }
+  @keyframes rotate {
+    from {
+      rotate: 0deg;
+    }
 
-  h1 {
-    color: white;
-    margin: 0;
-    font-family: "DM Mono";
-    font-size: 5rem;
-    animation: fadeIn ease 3s;
-    text-shadow: 0px 0px 20px rgb(240, 56, 179);
+    50% {
+      scale: 1 1.5;
+    }
+
+    to {
+      rotate: 360deg;
+    }
+  }
+
+  section {
+    position: relative;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+
+    h1 {
+      color: white;
+      margin: 0;
+      font-family: "DM Mono";
+      font-size: 5rem;
+      animation: fadeIn ease 3s;
+      text-shadow: 0px 0px 20px rgb(240, 56, 179);
+      z-index: 3;
+    }
+
+    #blob {
+      background-color: white;
+      height: 26vmax;
+      aspect-ratio: 1;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      translate: -50% -50%;
+      border-radius: 50%;
+      background: linear-gradient(
+        to right,
+        rgb(238, 39, 162),
+        rgb(27, 224, 238)
+      );
+      animation: rotate 20s infinite;
+      animation: fadeIn 3s ease;
+      opacity: 0.8;
+    }
+
+    #blur {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      z-index: 2;
+      backdrop-filter: blur(12vmax);
+    }
   }
 </style>

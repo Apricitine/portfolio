@@ -56,7 +56,7 @@
   }
 
   canvas#introCanvas {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100vh;
     display: block;
