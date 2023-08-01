@@ -8,6 +8,11 @@
     href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&display=swap"
     rel="stylesheet"
   />
+  <style lang="scss">
+    body::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
 </svelte:head>
 
 <main>

@@ -37,9 +37,10 @@
 
 <canvas id="introCanvas" />
 {#if readyToMountMain}
-  <main>
+  <section id="title">
     <ApricitineTitle />
-  </main>
+  </section>
+  <section>ooga</section>
 {/if}
 
 <style lang="scss">
@@ -63,7 +64,7 @@
     z-index: -1;
   }
 
-  main {
+  section#title {
     z-index: 1;
     background: transparent;
     width: 100vw;
