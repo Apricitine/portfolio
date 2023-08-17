@@ -40,7 +40,7 @@
   <section id="title">
     <ApricitineTitle />
   </section>
-  <section><iframe width="560" height="315" src="https://www.youtube.com/embed/ZVllS9y6mBg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></section>
+  <section>ooga</section>
 {/if}
 
 <style lang="scss">
