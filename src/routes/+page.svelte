@@ -1,5 +1,6 @@
 <script lang="ts">
   import ApricitineTitle from "$lib/components/ApricitineTitle.svelte";
+  import Nav from "$lib/components/Nav.svelte";
   import { Layout, Rive, Fit, Alignment } from "@rive-app/canvas";
   import { onMount } from "svelte";
 
@@ -24,7 +25,7 @@
         r.resizeDrawingSurfaceToCanvas();
       },
     });
-
+    localStorage.setItem("hasVisited", JSON.stringify(true));
     document.addEventListener("click", () => {
       setTimeout(() => (readyToMountMain = true), 6000);
     });
@@ -37,10 +38,23 @@
 
 <canvas id="introCanvas" />
 {#if readyToMountMain}
+  <div id="nav-wrapper">
+    <Nav />
+  </div>
   <section id="title">
     <ApricitineTitle />
   </section>
-  <section>ooga</section>
+  <section id="main-content">
+    <div id="content-area">
+      <h1>Hiiiiiiii!!!</h1>
+      <p>
+        I'm Apricitine, and I'm a web dev with 3 years of experience designing
+        UIs. I have quite a bit of knowledge in general purpose programming and
+        am a mechanist and programmer on the La Canada Engineering Club's 21525
+        and 2429 robotics teams.
+      </p>
+    </div>
+  </section>
 {/if}
 
 <style lang="scss">
@@ -72,5 +86,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  section#main-content {
+    color: white;
+    display: flex;
+    justify-content: center;
+
+    div#content-area {
+      width: 75%;
+      font-family: "Mulish";
+
+      h1 {
+        font-family: "DM Mono";
+        font-size: 5rem;
+      }
+    }
+  }
+
+  #nav-wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: absolute;
   }
 </style>

@@ -77,6 +77,8 @@
       z-index: 3;
       position: relative;
       transition: all 750ms;
+      user-select: none;
+      cursor: pointer;
 
       &:hover {
         transform: scale(1.025);
